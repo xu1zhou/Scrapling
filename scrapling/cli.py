@@ -10,7 +10,7 @@ from scrapling.core._types import List, Optional, Dict, Tuple, Any, Callable
 from orjson import loads as json_loads, JSONDecodeError
 
 try:
-    from click import command, option, Choice, group, argument
+    from click import command, option, Choice, group, argument, version_option
 except (ImportError, ModuleNotFoundError) as e:
     raise ModuleNotFoundError(
         "You need to install scrapling with any of the extras to enable Shell commands. See: https://scrapling.readthedocs.io/en/latest/#installation"
@@ -815,8 +815,18 @@ def stealthy_fetch(
 
 
 @group()
+@version_option(package_name="scrapling", prog_name="Scrapling")
 def main():
-    pass
+    """Scrapling - An adaptive web scraping framework for the modern web.
+
+    Handles everything from a single request to a full-scale crawl. Its parser
+    learns from website changes and automatically relocates your elements when
+    pages update. Its fetchers bypass anti-bot systems like Cloudflare Turnstile
+    out of the box. And its spider framework lets you scale up to concurrent,
+    multi-session crawls with pause/resume and automatic proxy rotation.
+
+    Documentation: https://scrapling.readthedocs.io
+    """
 
 
 # Adding commands
